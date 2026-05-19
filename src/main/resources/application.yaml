@@ -1,3 +1,56 @@
 spring:
   application:
     name: Backend-Intranet
+
+  servlet:
+    multipart:
+      max-file-size: 1GB
+      max-request-size: 1GB
+      enabled: true
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/intranet_corporativa?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: luis
+    password: mysql123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+
+app:
+  jwt:
+    secret: "t637V+rdHLge6W/otxRssaGRxyG4iy0HqWnTVEHE7Qh17RTBLdl8dfqthBLy5bwEIpcNLBaRM3n6v6qjRe+BrA=="
+    expiration-ms: 86400000
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics
+  endpoint:
+    health:
+      show-details: when-authorized
+
+logging:
+  level:
+    root: INFO
+    com.backendintranet: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.springframework.security: DEBUG
