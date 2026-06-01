@@ -49,6 +49,10 @@ public class NewsServiceImpl implements NewsService {
         news.setCategory(request.getCategory());
         news.setDescription(request.getDescription());
         news.setContentType(request.getContentType());
+
+        news.setImageUrl(null);
+        news.setVideoUrl(null);
+
         handleFile(news, file, request.getContentType());
         news.setUpdatedBy(user.getId());
 
@@ -121,11 +125,17 @@ public class NewsServiceImpl implements NewsService {
                 .anyMatch(r -> r.getName().equals("SUPER_ADMIN"));
     }
 
+    private boolean isAdmin(User user) {
+        return user.getRoles().stream()
+                .anyMatch(r -> r.getName().equals("ADMIN"));
+    }
+
     private boolean canModifyNews(News news, User user) {
         boolean isOwner = news.getCreatedBy().equals(user.getId());
-        boolean isAdmin = isSuperAdmin(user);
+        boolean isSuperAdmin = isSuperAdmin(user);
+        boolean isAdmin = isAdmin(user);
 
-        return isOwner || isAdmin;
+        return isOwner || isSuperAdmin || isAdmin;
     }
 
     private NewsResponse mapToResponse(News news) {

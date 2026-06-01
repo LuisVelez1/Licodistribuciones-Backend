@@ -144,6 +144,12 @@ public class RequirementServiceImpl implements RequirementService {
                 .stream().map(this::mapTypeToResponse).toList();
     }
 
+    @Override
+    public List<RequirementTypeResponse> getTypesByArea(Integer areaId) {
+        return requirementTypeRepository.findByArea_Id(areaId)
+                .stream().map(this::mapTypeToResponse).toList();
+    }
+
     private RequirementResponse mapToResponse(Requirement r) {
         return RequirementResponse.builder()
                 .id(r.getId())
@@ -174,6 +180,7 @@ public class RequirementServiceImpl implements RequirementService {
                 .id(t.getId())
                 .name(t.getName())
                 .description(t.getDescription())
+                .areaId(t.getArea() != null ? t.getArea().getId() : null)
                 .build();
     }
 
@@ -183,6 +190,13 @@ public class RequirementServiceImpl implements RequirementService {
                 .name(request.getName())
                 .description(request.getDescription())
                 .build();
+
+        if (request.getAreaId() != null) {
+            Area area = areaRepository.findById(request.getAreaId())
+                    .orElseThrow(() -> new RuntimeException("Área no encontrada"));
+            type.setArea(area);
+        }
+
         return mapTypeToResponse(requirementTypeRepository.save(type));
     }
 

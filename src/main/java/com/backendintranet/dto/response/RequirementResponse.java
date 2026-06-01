@@ -3,6 +3,7 @@ package com.backendintranet.dto.response;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -28,7 +29,7 @@ public class RequirementResponse {
     private String assignedToId;
     private String assignedToName;
 
-    private LocalDateTime dueDate;
+    private LocalDate dueDate;
     private LocalDateTime createdAt;
     private Boolean active;
 }

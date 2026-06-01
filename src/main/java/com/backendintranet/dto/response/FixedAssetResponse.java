@@ -33,7 +33,7 @@ public class FixedAssetResponse {
     private String os;
     private String ip;
     private String mac;
-
+    private String assignedToPosition;
     private LocalDateTime warrantyDate;
     private Boolean actaFirmada;
     private LocalDateTime actaDate;

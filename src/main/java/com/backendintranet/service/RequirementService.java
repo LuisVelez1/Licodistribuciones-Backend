@@ -29,5 +29,7 @@ public interface RequirementService {
 
     RequirementTypeResponse createType(RequirementTypeRequest request);
 
+    List<RequirementTypeResponse> getTypesByArea(Integer areaId);
+
     void deleteType(Integer id);
 }

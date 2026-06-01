@@ -2,7 +2,8 @@ package com.backendintranet.dto.request;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 @Data
 public class RequirementUpdateRequest {
@@ -13,5 +14,5 @@ public class RequirementUpdateRequest {
     private String priority;
     private String status;
     private String assignedTo;
-    private LocalDateTime dueDate;
+    private LocalDate dueDate;
 }

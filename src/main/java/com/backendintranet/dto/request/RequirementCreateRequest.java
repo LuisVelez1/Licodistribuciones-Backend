@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -23,5 +24,5 @@ public class RequirementCreateRequest {
     @NotBlank(message = "La prioridad es obligatoria")
     private String priority;
 
-    private LocalDateTime dueDate;
+    private LocalDate dueDate;
 }

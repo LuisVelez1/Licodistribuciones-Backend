@@ -188,6 +188,9 @@ public class FixedAssetServiceImpl implements FixedAssetService {
                 .os(asset.getOs())
                 .ip(asset.getIp())
                 .mac(asset.getMac())
+                .assignedToPosition(asset.getAssignedTo() != null
+                        ? asset.getAssignedTo().getPosition()
+                        : null)
                 .warrantyDate(asset.getWarrantyDate())
                 .actaFirmada(asset.getActaFirmada())
                 .actaDate(asset.getActaDate())

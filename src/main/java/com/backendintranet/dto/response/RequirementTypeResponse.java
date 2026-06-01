@@ -9,4 +9,5 @@ public class RequirementTypeResponse {
     private Integer id;
     private String name;
     private String description;
+    private Integer areaId;
 }

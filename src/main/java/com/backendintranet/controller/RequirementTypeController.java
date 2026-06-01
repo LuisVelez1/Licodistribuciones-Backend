@@ -33,4 +33,9 @@ public class RequirementTypeController {
         requirementService.deleteType(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/by-area/{areaId}")
+    public ResponseEntity<List<RequirementTypeResponse>> getByArea(@PathVariable Integer areaId) {
+        return ResponseEntity.ok(requirementService.getTypesByArea(areaId));
+    }
 }

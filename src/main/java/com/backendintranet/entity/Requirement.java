@@ -3,6 +3,7 @@ package com.backendintranet.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -45,7 +46,7 @@ public class Requirement {
     private User assignedTo;
 
     @Column(name = "due_date")
-    private LocalDateTime dueDate;
+    private LocalDate dueDate;
 
     @Column(nullable = false)
     private Boolean active = true;
