@@ -4,14 +4,14 @@ spring:
 
   servlet:
     multipart:
+      enabled: true
       max-file-size: 1GB
       max-request-size: 1GB
-      enabled: true
 
   datasource:
     url: jdbc:mysql://localhost:3306/intranet_corporativa?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-    username: luis
-    password: mysql123
+    username: TU_USUARIO_MYSQL
+    password: TU_PASSWORD_MYSQL
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       maximum-pool-size: 10
@@ -31,7 +31,7 @@ spring:
 
 app:
   jwt:
-    secret: "t637V+rdHLge6W/otxRssaGRxyG4iy0HqWnTVEHE7Qh17RTBLdl8dfqthBLy5bwEIpcNLBaRM3n6v6qjRe+BrA=="
+    secret: TU_JWT_SECRET
     expiration-ms: 86400000
 
 server:
