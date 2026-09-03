@@ -21,6 +21,10 @@ public class RegisterRequest {
     @Size(max = 100)
     private String lastName;
 
+    @NotBlank(message = "La cedula es obligatoria")
+    @Size(max = 20)
+    private String cedula;
+
     @NotBlank(message = "El email es obligatorio")
     @Email(message = "Formato de email inválido")
     private String email;

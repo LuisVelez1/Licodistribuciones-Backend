@@ -15,6 +15,7 @@ public class UserResponse {
     private String lastName;
     private String email;
     private String phone;
+    private String cedula;
     private String position;
     private String sede;
     private String status;

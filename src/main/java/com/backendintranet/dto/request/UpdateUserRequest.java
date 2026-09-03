@@ -22,5 +22,8 @@ public class UpdateUserRequest {
     @Size(max = 20)
     private String phone;
 
+    @Size(max = 20)
+    private String cedula;
+
     private LocalDate birthDate;
 }

@@ -22,6 +22,9 @@ public class AdminUpdateUserRequest {
     @Size(max = 20)
     private String phone;
 
+    @Size(max = 20)
+    private String cedula;
+
     @Size(max = 100)
     private String position;
 

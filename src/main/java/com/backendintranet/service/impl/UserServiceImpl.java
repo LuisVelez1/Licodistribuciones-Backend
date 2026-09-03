@@ -69,6 +69,12 @@ public class UserServiceImpl implements UserService {
 
         if (request.getFirstName() != null) user.setFirstName(request.getFirstName());
         if (request.getLastName() != null) user.setLastName(request.getLastName());
+        if (request.getCedula() != null && !request.getCedula().isBlank()) {
+            if (!request.getCedula().equals(user.getCedula()) && userRepository.existsByCedula(request.getCedula())) {
+                throw new RuntimeException("La cédula ya está registrada por otro usuario.");
+            }
+            user.setCedula(request.getCedula());
+        }
         if (request.getEmail() != null && !request.getEmail().isBlank()) {
             if (!user.getEmail().equals(request.getEmail()) && userRepository.existsByEmail(request.getEmail())) {
                 throw new RuntimeException("El email ya está registrado por otro usuario.");
@@ -87,16 +93,24 @@ public class UserServiceImpl implements UserService {
 
         if (request.getFirstName() != null) user.setFirstName(request.getFirstName());
         if (request.getLastName() != null) user.setLastName(request.getLastName());
+        if (request.getCedula() != null && !request.getCedula().isBlank()) {
+            if (!request.getCedula().equals(user.getCedula()) && userRepository.existsByCedula(request.getCedula())) {
+                throw new RuntimeException("La cédula ya está registrada por otro usuario.");
+            }
+            user.setCedula(request.getCedula());
+        }
         if (request.getEmail() != null && !request.getEmail().isBlank()) {
             if (!user.getEmail().equals(request.getEmail()) && userRepository.existsByEmail(request.getEmail())) {
                 throw new RuntimeException("El email ya está registrado por otro usuario.");
             }
             user.setEmail(request.getEmail());
         }
+        if (request.getPhone() != null) user.setPhone(request.getPhone());
         if (request.getPosition() != null) user.setPosition(request.getPosition());
         if (request.getSede() != null) user.setSede(request.getSede());
         if (request.getAreaId() != null) user.setAreaId(request.getAreaId());
         if (request.getStatus() != null) user.setStatus(request.getStatus());
+        if (request.getBirthDate() != null) user.setBirthDate(request.getBirthDate());
 
         if (request.getPassword() != null && !request.getPassword().isBlank()) {
             user.setPassword(passwordEncoder.encode(request.getPassword()));
@@ -110,6 +124,10 @@ public class UserServiceImpl implements UserService {
     public UserResponse register(RegisterRequest request) {
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new RuntimeException("El email ya está registrado");
+        }
+
+        if (request.getCedula() != null && userRepository.existsByCedula(request.getCedula())) {
+            throw new RuntimeException("La cédula ya está registrada");
         }
 
         String first = request.getFirstName().trim().split("\\s+")[0].toUpperCase();
@@ -131,6 +149,7 @@ public class UserServiceImpl implements UserService {
                 .username(Username)
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
+                .cedula(request.getCedula())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .phone(request.getPhone())
@@ -166,6 +185,7 @@ public class UserServiceImpl implements UserService {
                 .lastName(user.getLastName())
                 .email(user.getEmail())
                 .phone(user.getPhone())
+                .cedula(user.getCedula())
                 .position(user.getPosition())
                 .sede(user.getSede())
                 .status(user.getStatus())

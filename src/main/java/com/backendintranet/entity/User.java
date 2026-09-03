@@ -40,6 +40,9 @@ public class User implements UserDetails {
     @Column(length = 20)
     private String phone;
 
+    @Column(length = 20)
+    private String cedula;
+
     @Column(length = 100)
     private String position;
 
